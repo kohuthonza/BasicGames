@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="BasicGames.UserControls.SnakeUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BasicGames.UserControls"
+             mc:Ignorable="d" 
+             DataContext="{StaticResource SnakeViewModel}"
+             d:DesignHeight="720" d:DesignWidth="920">
+    
+    <Grid Background="White">
+        <Grid Name="MainGrid" Margin="20" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <Canvas x:Name="snakeCanvas" Grid.Column="0" Margin="50" Background="AliceBlue" Width="Auto" Height="Auto"/> 
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="6*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Column="0" Grid.Row="0" Content="Score:" FontSize="25"></Label>
+                <TextBlock Name="scoreBlock" Grid.Column="1" Grid.Row="0" FontSize="25"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Name:" FontSize="25"/>
+                <TextBlock Name="nameBlock" Grid.Column="1" Grid.Row="1" FontSize="25"/>
+                <Button Name="startButton" Command="{Binding StartSnakeCommand}" CommandParameter="{Binding ElementName=snakeCanvas}" Grid.Column="1" Grid.Row="3" Content="Start" FontSize="25" Margin="5"></Button>
+                <Button Name="endButton" Command="{Binding EndSnakeCommand}" CommandParameter="{Binding ElementName=snakeCanvas}" Grid.Column="1" Grid.Row="4" Content="End" FontSize="25" Margin="5" Click="endButton_Click"></Button>
+            </Grid>
+        </Grid>
+    </Grid>
+    <UserControl.InputBindings>
+        <KeyBinding Key="Up" Command="{Binding MoveHeadUpCommand}" />
+        <KeyBinding Key="Down" Command="{Binding MoveHeadDownCommand}" />
+        <KeyBinding Key="Right" Command="{Binding MoveHeadRightCommand}" />
+        <KeyBinding Key="Left" Command="{Binding MoveHeadLeftCommand}" />
+    </UserControl.InputBindings>
+</UserControl>

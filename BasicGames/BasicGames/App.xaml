@@ -1,0 +1,10 @@
+﻿<Application x:Class="BasicGames.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BasicGames"
+             xmlns:viewModels="clr-namespace:BasicGames.ViewModels;assembly=BasicGames.ViewModels"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <viewModels:SnakeViewModel x:Key="SnakeViewModel" />
+    </Application.Resources>
+</Application>

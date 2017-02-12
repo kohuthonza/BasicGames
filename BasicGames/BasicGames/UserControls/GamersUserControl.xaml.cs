@@ -8,27 +8,31 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using BasicGames.UserControls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BasicGames
+namespace BasicGames.UserControls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for GamersUserControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class GamersUserControl : UserControl
     {
-        public MainWindow()
+        public GamersUserControl()
         {
             InitializeComponent();
         }
 
-        private void beginButton_Click(object sender, RoutedEventArgs e)
+        private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            GamersUserControl.Visibility = Visibility.Visible;
+            this.Visibility = Visibility.Hidden;
+        }
+
+        private void selectButton_Click(object sender, RoutedEventArgs e)
+        {
+            GamerUserControl.Visibility = Visibility.Visible;
         }
     }
 }

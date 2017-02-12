@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BasicGames.UserControls"
-             mc:Ignorable="d" 
-             DataContext="{StaticResource SnakeViewModel}"
+             mc:Ignorable="d"
+             DataContext="{DynamicResource GamersViewModel}"
              d:DesignHeight="720" d:DesignWidth="920">
     
     <Grid Background="White">
@@ -29,19 +29,19 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" Content="Score:" FontSize="25"></Label>
-                <TextBlock Name="scoreBlock" Grid.Column="1" Grid.Row="0" FontSize="25"/>
-                <Label Grid.Column="0" Grid.Row="1" Content="Name:" FontSize="25"/>
-                <TextBlock Name="nameBlock" Grid.Column="1" Grid.Row="1" FontSize="25"/>
-                <Button Name="startButton" Command="{Binding StartSnakeCommand}" CommandParameter="{Binding ElementName=snakeCanvas}" Grid.Column="1" Grid.Row="3" Content="Start" FontSize="25" Margin="5"></Button>
-                <Button Name="endButton" Command="{Binding EndSnakeCommand}" CommandParameter="{Binding ElementName=snakeCanvas}" Grid.Column="1" Grid.Row="4" Content="End" FontSize="25" Margin="5" Click="endButton_Click"></Button>
+                <Label Grid.Column="0" Grid.Row="0" Content="Score:" Target="{Binding ElementName=scoreBlock}" VerticalContentAlignment="Center" FontSize="25"></Label>
+                <TextBlock Name="scoreBlock" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" FontSize="25" Text="{Binding GamerViewModel.Gamer.SnakeScore}"/>
+                <Label Grid.Column="0" Grid.Row="1" Content="Name:" Target="{Binding ElementName=nameBlock}" VerticalContentAlignment="Center" FontSize="25"/>
+                <TextBlock Name="nameBlock" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" FontSize="25" Text="{Binding GamerViewModel.Gamer.Name}" />
+                <Button Name="startButton" Command="{Binding GamerViewModel.SnakeViewModel.StartSnakeCommand}" CommandParameter="{Binding ElementName=snakeCanvas}" Grid.Column="1" Grid.Row="3" Content="Start" FontSize="25" Margin="5"></Button>
+                <Button Name="endButton" Command="{Binding GamerViewModel.SnakeViewModel.EndSnakeCommand}" CommandParameter="{Binding ElementName=snakeCanvas}" Grid.Column="1" Grid.Row="4" Content="End" FontSize="25" Margin="5" Click="endButton_Click"></Button>
             </Grid>
         </Grid>
     </Grid>
     <UserControl.InputBindings>
-        <KeyBinding Key="Up" Command="{Binding MoveHeadUpCommand}" />
-        <KeyBinding Key="Down" Command="{Binding MoveHeadDownCommand}" />
-        <KeyBinding Key="Right" Command="{Binding MoveHeadRightCommand}" />
-        <KeyBinding Key="Left" Command="{Binding MoveHeadLeftCommand}" />
+        <KeyBinding Key="Up" Command="{Binding GamerViewModel.SnakeViewModel.Snake.MoveHeadUpCommand}" />
+        <KeyBinding Key="Down" Command="{Binding GamerViewModel.SnakeViewModel.Snake.MoveHeadDownCommand}" />
+        <KeyBinding Key="Right" Command="{Binding GamerViewModel.SnakeViewModel.Snake.MoveHeadRightCommand}" />
+        <KeyBinding Key="Left" Command="{Binding GamerViewModel.SnakeViewModel.Snake.MoveHeadLeftCommand}" />
     </UserControl.InputBindings>
 </UserControl>

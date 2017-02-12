@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace BasicGames.ViewModels.Commands
 {
-    class MoveHeadDownCommand : ICommand
+    public class MoveHeadDownCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 

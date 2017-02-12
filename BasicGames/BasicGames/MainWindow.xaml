@@ -14,10 +14,10 @@
                 <RowDefinition  Height="*"/>
                 <RowDefinition  Height="*"/>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Name="snakeButton" Content="Snake" FontSize="25" Margin="10" Click="snakeButton_Click">
+            <Button Grid.Row="0" Name="snakeButton" Content="Begin" FontSize="25" Margin="10" Click="beginButton_Click">
 
             </Button>
         </Grid>
-        <userControls:SnakeUserControl x:Name="SnakeUserControl" Visibility="Hidden" />
+        <userControls:GamersUserControl x:Name="GamersUserControl" Visibility="Hidden" />
     </Grid>
 </Window>

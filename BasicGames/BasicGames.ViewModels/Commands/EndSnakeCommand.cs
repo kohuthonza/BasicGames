@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace BasicGames.ViewModels.Commands
 {
-    class EndSnakeCommand : ICommand
+    public class EndSnakeCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 

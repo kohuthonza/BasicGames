@@ -5,6 +5,6 @@
              xmlns:viewModels="clr-namespace:BasicGames.ViewModels;assembly=BasicGames.ViewModels"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <viewModels:SnakeViewModel x:Key="SnakeViewModel" />
+        <viewModels:GamersViewModel x:Key="GamersViewModel" />
     </Application.Resources>
 </Application>

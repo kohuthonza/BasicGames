@@ -57,6 +57,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControls\GamersUserControl.xaml.cs">
+      <DependentUpon>GamersUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GamerUserControl.xaml.cs">
+      <DependentUpon>GamerUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SnakeUserControl.xaml.cs">
       <DependentUpon>SnakeUserControl.xaml</DependentUpon>
     </Compile>
@@ -72,6 +78,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\GamersUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GamerUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\SnakeUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

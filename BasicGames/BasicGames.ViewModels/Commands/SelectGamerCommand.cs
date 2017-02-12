@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BasicGames.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,15 +8,15 @@ using System.Windows.Input;
 
 namespace BasicGames.ViewModels.Commands
 {
-    public class MoveHeadUpCommand : ICommand
+    public class SelectGamerCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
-        Snake snake;
+        private GamerViewModel gamerViewModel;
 
-        public MoveHeadUpCommand(Snake snake)
+        public SelectGamerCommand(GamerViewModel gamerViewModel)
         {
-            this.snake = snake;
+            this.gamerViewModel = gamerViewModel;
         }
 
         public bool CanExecute(object parameter)
@@ -25,10 +26,7 @@ namespace BasicGames.ViewModels.Commands
 
         public void Execute(object parameter)
         {
-            if (!snake.Direction.Equals("Down"))
-            {
-                snake.Direction = "Up";
-            };
+            gamerViewModel.Init(parameter as Gamer);
         }
     }
 }

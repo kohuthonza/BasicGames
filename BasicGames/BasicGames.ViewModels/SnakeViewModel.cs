@@ -8,33 +8,61 @@ using BasicGames.ViewModels.Commands;
 using BasicGames.Models;
 using System.Threading;
 using System.Windows.Controls;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace BasicGames.ViewModels
 {
-    public class SnakeViewModel
+    public class SnakeViewModel : INotifyPropertyChanged
     {
         public Snake Snake { get; set; }
         public Food Food { get; set; }
         private Canvas canvas;
         private int squareSize;
         private Random randomGenerator;
-        private bool gameOver;
+        private Gamer gamer;
 
-        public ICommand MoveHeadUpCommand { get; set; }
-        public ICommand MoveHeadDownCommand { get; set; }
-        public ICommand MoveHeadRightCommand { get; set; }
-        public ICommand MoveHeadLeftCommand { get; set; }
-
-        public ICommand StartSnakeCommand { get; set; }
-        public ICommand EndSnakeCommand { get; set; }
+        private StartSnakeCommand startSnakeCommand;
+        public StartSnakeCommand StartSnakeCommand
+        {
+            get
+            {
+                return startSnakeCommand;
+            }
+            set
+            {
+                startSnakeCommand = value;
+                OnPropertyChanged();
+            }
+        }
+        private EndSnakeCommand endSnakeCommand;
+        public EndSnakeCommand EndSnakeCommand
+        {
+            get
+            {
+                return endSnakeCommand;
+            }
+            set
+            {
+                endSnakeCommand = value;
+                OnPropertyChanged();
+            }
+        }
 
         private System.Windows.Forms.Timer drawTimer;
         private System.Windows.Forms.Timer updateTimer;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public SnakeViewModel()
         {
             this.Snake = new Snake();
-            InitCommands();
+        }
+
+        public void Init(Gamer gamer)
+        {
+            this.gamer = gamer;
+            this.StartSnakeCommand = new StartSnakeCommand(this);
         }
 
         public void InitSnakeGame(Canvas canvas)
@@ -44,7 +72,6 @@ namespace BasicGames.ViewModels
             this.Snake.Init(this.canvas, this.squareSize);
             this.Food = new Food(this.canvas, this.squareSize);
             this.randomGenerator = new Random();
-            this.gameOver = false;
             GenerateRandomFood();
             InitDrawTimer();
             Thread.Sleep(190);
@@ -72,19 +99,13 @@ namespace BasicGames.ViewModels
             this.canvas.Children.Clear();
             this.Food.Draw();
             this.Snake.Draw();
-            /**
-            if (gameOver)
-            {
-                this.drawTimer.Stop();
-            }
-            **/
+           
         }
 
         private void Update(object sender, EventArgs e)
         {
             if (IsSnakeIntersectingBorder() || IsHeadIntersectingSnake())
             {
-                this.gameOver = true;
                 this.updateTimer.Stop();
                 this.drawTimer.Stop();
             }
@@ -107,6 +128,7 @@ namespace BasicGames.ViewModels
 
         private void EatFood()
         {
+            this.gamer.SnakeScore += 10;
             this.Snake.body.Add(new SnakeRectangle(0, 0));
         }
 
@@ -173,15 +195,9 @@ namespace BasicGames.ViewModels
             return false;
         }
 
-        private void InitCommands()
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            this.StartSnakeCommand = new StartSnakeCommand(this);
-            this.EndSnakeCommand = new EndSnakeCommand();
-
-            this.MoveHeadUpCommand = new MoveHeadUpCommand(this.Snake);
-            this.MoveHeadDownCommand = new MoveHeadDownCommand(this.Snake);
-            this.MoveHeadRightCommand = new MoveHeadRightCommand(this.Snake);
-            this.MoveHeadLeftCommand = new MoveHeadLeftCommand(this.Snake);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace BasicGames.ViewModels.Commands
 {
-    class MoveHeadLeftCommand : ICommand
+    public class MoveHeadLeftCommand : ICommand
     {
         private Snake snake;
 

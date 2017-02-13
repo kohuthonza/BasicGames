@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace BasicGames.UserControls
 {
     /// <summary>
-    /// Interaction logic for GamersUserControl.xaml
+    /// Interaction logic for AddGamerUserControl.xaml
     /// </summary>
-    public partial class GamersUserControl : UserControl
+    public partial class AddGamerUserControl : UserControl
     {
-        public GamersUserControl()
+        public AddGamerUserControl()
         {
             InitializeComponent();
         }
@@ -30,15 +30,9 @@ namespace BasicGames.UserControls
             this.Visibility = Visibility.Hidden;
         }
 
-        private void selectButton_Click(object sender, RoutedEventArgs e)
-        {
-            GamerUserControl.Visibility = Visibility.Visible;
-        }
-
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            AddGamerUserControl.Visibility = Visibility.Visible;
-            Console.WriteLine("juj");
+            this.Visibility = Visibility.Hidden;
         }
     }
 }

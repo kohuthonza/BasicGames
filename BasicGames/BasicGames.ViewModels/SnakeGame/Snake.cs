@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Threading.Tasks;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using BasicGames.Models;
-using BasicGames.ViewModels.Commands;
-using System.Threading;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using BasicGames.ViewModels.SnakeGame.SnakeCommands;
 
-namespace BasicGames.ViewModels
+namespace BasicGames.ViewModels.SnakeGame
 {
     public class Snake : INotifyPropertyChanged
     {
@@ -77,14 +71,15 @@ namespace BasicGames.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ObservableCollection<SnakeRectangle> body;
+        public ObservableCollection<SnakeRectangle> Body { get; set; }
+        public ObservableCollection<string> Directions { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void Init(Canvas canvas, int squareSize)
+        public Snake(Canvas canvas, int squareSize)
         {
             this.canvas = canvas;
-            this.Direction = "Up";
+            this.Direction = "Right";
             this.squareSize = squareSize;
             this.stepSize = this.squareSize + 1;
 
@@ -93,16 +88,15 @@ namespace BasicGames.ViewModels
             this.MoveHeadRightCommand = new MoveHeadRightCommand(this);
             this.MoveHeadLeftCommand = new MoveHeadLeftCommand(this);
 
-            body = new ObservableCollection<SnakeRectangle>();
-            body.Add(new SnakeRectangle(Convert.ToInt32(canvas.ActualHeight / 2 - this.squareSize / 2), Convert.ToInt32(canvas.ActualWidth / 2 - this.squareSize / 2)));
-            body.Add(new SnakeRectangle(Convert.ToInt32(canvas.ActualHeight / 2 - this.squareSize / 2), Convert.ToInt32(canvas.ActualWidth / 2 - this.squareSize / 2 + this.stepSize)));
-            body.Add(new SnakeRectangle(Convert.ToInt32(canvas.ActualHeight / 2 - this.squareSize / 2), Convert.ToInt32(canvas.ActualWidth / 2 - this.squareSize / 2 + this.stepSize * 2)));
-            body.Add(new SnakeRectangle(Convert.ToInt32(canvas.ActualHeight / 2 - this.squareSize / 2), Convert.ToInt32(canvas.ActualWidth / 2 - this.squareSize / 2 + this.stepSize * 3)));
+            Directions = new ObservableCollection<string>();
+
+            Body = new ObservableCollection<SnakeRectangle>();
+            Body.Add(new SnakeRectangle(0, 0));
         }
 
         public void Draw()
         {
-            foreach (SnakeRectangle rectangle in body)
+            foreach (SnakeRectangle rectangle in Body)
             {
                 Rectangle rect = new Rectangle();
                 rect.Stroke = new SolidColorBrush(Colors.Black);
@@ -118,7 +112,13 @@ namespace BasicGames.ViewModels
         public void Move()
         {
             
-            SnakeRectangle snakeHead = new SnakeRectangle(body.First().XCoord, body.First().YCoord);
+            SnakeRectangle snakeHead = new SnakeRectangle(Body.First().XCoord, Body.First().YCoord);
+
+            if (this.Directions.Count > 0)
+            {
+                this.Direction = this.Directions[0];
+                this.Directions.RemoveAt(0);
+            }
 
             if (this.Direction.Equals("Up"))
             {
@@ -137,12 +137,12 @@ namespace BasicGames.ViewModels
                 snakeHead.XCoord -= this.stepSize;
             }
 
-            for (int i = this.body.Count() - 2; i >= 0; i--)
+            for (int i = this.Body.Count() - 2; i >= 0; i--)
             {
-                this.body[i + 1].XCoord = this.body[i].XCoord;
-                this.body[i + 1].YCoord = this.body[i].YCoord;
+                this.Body[i + 1].XCoord = this.Body[i].XCoord;
+                this.Body[i + 1].YCoord = this.Body[i].YCoord;
             }
-            this.body[0] = snakeHead;        
+            this.Body[0] = snakeHead;        
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

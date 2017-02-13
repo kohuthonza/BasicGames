@@ -1,12 +1,9 @@
 ﻿using BasicGames.Models;
+using BasicGames.ViewModels.SnakeGame;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace BasicGames.ViewModels.Commands
+namespace BasicGames.ViewModels.GamerMenu.GamesCommands
 {
     public class StartSnakeGameCommand : ICommand
     {

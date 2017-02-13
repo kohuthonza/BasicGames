@@ -6,7 +6,8 @@
         xmlns:userControls="clr-namespace:BasicGames.UserControls"
         xmlns:local="clr-namespace:BasicGames"
         mc:Ignorable="d"
-        Title="Basic Games" Height="720" Width="920">
+        Title="Basic Games" Height="720" Width="1400"
+        >
     <Grid>
         <Grid Margin="350 220">
             <Grid.RowDefinitions>

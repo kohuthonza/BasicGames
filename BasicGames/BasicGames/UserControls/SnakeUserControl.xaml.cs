@@ -30,5 +30,6 @@ namespace BasicGames.UserControls
         {
             this.Visibility = Visibility.Hidden;
         }
+
     }
 }

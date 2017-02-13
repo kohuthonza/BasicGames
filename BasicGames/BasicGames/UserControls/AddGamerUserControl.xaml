@@ -1,23 +1,34 @@
-﻿<UserControl x:Class="BasicGames.UserControls.GamersUserControl"
+﻿<UserControl x:Class="BasicGames.UserControls.AddGamerUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BasicGames.UserControls"
-             mc:Ignorable="d"
+             mc:Ignorable="d" 
              DataContext="{DynamicResource GamersViewModel}"
              d:DesignHeight="768" d:DesignWidth="1366">
+    
     <Grid Background="White">
         <Grid Name="MainGrid" Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="5*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Pick gamer" FontSize="65" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <ListBox Name="gamersList" Grid.Row="1" ItemsSource="{Binding Gamers}" DisplayMemberPath="Name" FontSize="20" Margin="50 25"/>
-
+            <TextBlock Text="Add gamer" FontSize="65" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Content="Name:" FontSize="25" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="2" Name="nameBox" FontSize="25" Margin="25"/>
+            </Grid>
+            <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -26,11 +37,9 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Button Name="backButton" Grid.Column="0" Content="Back" FontSize="25" Margin="50 25" Click="backButton_Click"/>
-                <Button Name="addButton" Grid.Column="2" Content="Add gamer" FontSize="25" Margin="50 25" Click="addButton_Click"/>
-                <Button Name="selectButton" Grid.Column="4" IsEnabled="{Binding ElementName=gamersList, Path=SelectedItems.Count}" Command="{Binding SelectGamerCommand}" CommandParameter="{Binding ElementName=gamersList, Path=SelectedItem}" Content="Select" FontSize="25" Margin="50 25" Click="selectButton_Click"/>
+                <Button Name="addButton" Grid.Column="4" IsEnabled="{Binding ElementName=nameBox, Path=Text.Length}" Command="{Binding AddGamerCommand}" CommandParameter="{Binding ElementName=nameBox}" Content="Add gamer" FontSize="25" Margin="50 25" Click="addButton_Click"/>
             </Grid>
+
         </Grid>
-        <local:GamerUserControl x:Name="GamerUserControl" Visibility="Hidden" />
-        <local:AddGamerUserControl x:Name="AddGamerUserControl" Visibility="Hidden" />
     </Grid>
 </UserControl>

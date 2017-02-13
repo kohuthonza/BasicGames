@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace BasicGames.ViewModels.Commands
+namespace BasicGames.ViewModels.SnakeGame.SnakeCommands
 {
-    public class MoveHeadDownCommand : ICommand
+    public class MoveHeadUpCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
         Snake snake;
 
-        public MoveHeadDownCommand(Snake snake)
+        public MoveHeadUpCommand(Snake snake)
         {
             this.snake = snake;
         }
@@ -25,10 +21,11 @@ namespace BasicGames.ViewModels.Commands
 
         public void Execute(object parameter)
         {
-            if (!snake.Direction.Equals("Up"))
+            if (!snake.Direction.Equals("Down"))
             {
-                snake.Direction = "Down";
-            }
+                snake.Direction = "Up";
+                snake.Directions.Add("Up");
+            };
         }
     }
 }

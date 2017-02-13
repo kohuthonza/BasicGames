@@ -12,16 +12,16 @@ namespace BasicGames.Models
     {
         public string Name { get; set; }
 
-        private int snakeScore;
-        public int SnakeScore
+        private int snakeTopScore;
+        public int SnakeTopScore
         {
             get
             {
-                return snakeScore;
+                return snakeTopScore;
             }
             set
             {
-                snakeScore = value;
+                snakeTopScore = value;
                 OnPropertyChanged();
             }
         }
@@ -31,7 +31,7 @@ namespace BasicGames.Models
         public Gamer(string name)
         {
             this.Name = name;
-            this.SnakeScore = 0;
+            this.SnakeTopScore = 0;
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Shapes;
 
-namespace BasicGames.ViewModels.Commands
+namespace BasicGames.ViewModels.SnakeGame.GameCommands
 {
     public class StartSnakeCommand : ICommand
     {
@@ -25,13 +18,15 @@ namespace BasicGames.ViewModels.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            return !this.snakeViewModel.IsStarted;
         }
 
         public void Execute(object parameter)
         {
             var snakeCanvas = parameter as Canvas;
             this.snakeViewModel.InitSnakeGame(snakeCanvas);
+            this.snakeViewModel.InitTimers();
+            this.snakeViewModel.IsStarted = true;
         }
     }
 }

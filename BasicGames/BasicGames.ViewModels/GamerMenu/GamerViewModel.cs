@@ -1,13 +1,9 @@
 ﻿using BasicGames.Models;
-using BasicGames.ViewModels.Commands;
-using System;
-using System.Collections.Generic;
+using BasicGames.ViewModels.GamerMenu.GamesCommands;
+using BasicGames.ViewModels.SnakeGame;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
+
 
 namespace BasicGames.ViewModels
 {

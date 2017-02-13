@@ -1,21 +1,22 @@
-﻿using System;
+﻿using BasicGames.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace BasicGames.ViewModels.Commands
+namespace BasicGames.ViewModels.GamersCommands
 {
-    public class MoveHeadRightCommand : ICommand
+    public class SelectGamerCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
-        Snake snake;
+        private GamerViewModel gamerViewModel;
 
-        public MoveHeadRightCommand(Snake snake)
+        public SelectGamerCommand(GamerViewModel gamerViewModel)
         {
-            this.snake = snake;
+            this.gamerViewModel = gamerViewModel;
         }
 
         public bool CanExecute(object parameter)
@@ -25,10 +26,7 @@ namespace BasicGames.ViewModels.Commands
 
         public void Execute(object parameter)
         {
-            if (!snake.Direction.Equals("Left"))
-            {
-                snake.Direction = "Right";
-            }
+            gamerViewModel.Init(parameter as Gamer);
         }
     }
 }

@@ -6,18 +6,37 @@
              xmlns:local="clr-namespace:BasicGames.UserControls"
              mc:Ignorable="d" 
              DataContext="{DynamicResource GamersViewModel}"
-             d:DesignHeight="720" d:DesignWidth="920">
+             d:DesignHeight="768" d:DesignWidth="1366">
     <Grid Background="White">
-        <Grid Margin="350 220">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition  Height="*"/>
-                <RowDefinition  Height="*"/>
-                <RowDefinition  Height="*"/>
+                <RowDefinition  Height="1*"/>
+                <RowDefinition  Height="5*"/>
+                <RowDefinition  Height="1*"/>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Name="snakeButton" Command="{Binding GamerViewModel.StartSnakeGameCommand}" Content="Snake" FontSize="25" Margin="10" Click="snakeButton_Click">
-
-            </Button>
+            <TextBlock Grid.Row="0" Text="Pick game" FontSize="65" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Name="snakeButton" Command="{Binding GamerViewModel.StartSnakeGameCommand}" Content="Snake" FontSize="25" Margin="10" Click="snakeButton_Click"/>
+                <Button Grid.Column="2" Name="flappyBirdButton" Command="{Binding GamerViewModel.StartFlappyBirdGameCommand}" Content="Flappy Bird" FontSize="25" Margin="10" Click="flappyBirdButton_Click" />
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Name="backButton" Grid.Column="0" Content="Back" FontSize="25" Margin="50 25" Click="backButton_Click"/>
+            </Grid>
         </Grid>
         <local:SnakeUserControl x:Name="SnakeUserControl" Visibility="Hidden" />
+        <local:FlappyBirdUserControl x:Name="FlappyBirdUserControl" Visibility="Hidden" />
     </Grid>
 </UserControl>

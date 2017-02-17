@@ -16,28 +16,18 @@ using System.Windows.Shapes;
 namespace BasicGames.UserControls
 {
     /// <summary>
-    /// Interaction logic for GamerUserControl.xaml
+    /// Interaction logic for FlappyBirdUserControl.xaml
     /// </summary>
-    public partial class GamerUserControl : UserControl
+    public partial class FlappyBirdUserControl : UserControl
     {
-        public GamerUserControl()
+        public FlappyBirdUserControl()
         {
             InitializeComponent();
         }
 
-        private void snakeButton_Click(object sender, RoutedEventArgs e)
-        {
-            SnakeUserControl.Visibility = Visibility.Visible;
-        }
-
-        private void backButton_Click(object sender, RoutedEventArgs e)
+        private void endButton_Click(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Hidden;
-        }
-
-        private void flappyBirdButton_Click(object sender, RoutedEventArgs e)
-        {
-            FlappyBirdUserControl.Visibility = Visibility.Visible;
         }
     }
 }

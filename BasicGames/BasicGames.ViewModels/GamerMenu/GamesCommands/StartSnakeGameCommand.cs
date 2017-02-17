@@ -25,7 +25,7 @@ namespace BasicGames.ViewModels.GamerMenu.GamesCommands
 
         public void Execute(object parameter)
         {
-           snakeViewModel.Init(gamer);
+           this.snakeViewModel.Init(this.gamer);
         }
     }
 }

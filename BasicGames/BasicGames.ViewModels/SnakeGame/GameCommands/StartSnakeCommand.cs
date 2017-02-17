@@ -25,7 +25,7 @@ namespace BasicGames.ViewModels.SnakeGame.GameCommands
         {
             var snakeCanvas = parameter as Canvas;
             this.snakeViewModel.InitSnakeGame(snakeCanvas);
-            this.snakeViewModel.InitTimers();
+            this.snakeViewModel.InitUpdateTimer();
             this.snakeViewModel.IsStarted = true;
         }
     }

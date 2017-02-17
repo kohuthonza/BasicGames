@@ -27,7 +27,7 @@ namespace BasicGames.ViewModels.SnakeGame.GameCommands
             snakeViewModel.Score = 0;
             if (this.snakeViewModel.IsStarted)
             {
-                this.snakeViewModel.StopTimers();
+                this.snakeViewModel.UpdateTimer.Stop();
                 this.snakeViewModel.IsStarted = false;
             }
         }

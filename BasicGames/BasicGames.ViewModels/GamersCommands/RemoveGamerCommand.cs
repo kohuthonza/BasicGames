@@ -1,19 +1,21 @@
 ﻿using BasicGames.Models;
-using System;
-using System.Windows.Input;
-using System.Collections.ObjectModel;
-using System.Windows.Controls;
 using BasicGames.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace BasicGames.ViewModels.GamersCommands
 {
-    public class AddGamerCommand : ICommand
+    public class RemoveGamerCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
         private BasicGamesContext gamersContext;
 
-        public AddGamerCommand(BasicGamesContext gamersContext)
+        public RemoveGamerCommand(BasicGamesContext gamersContext)
         {
             this.gamersContext = gamersContext;
         }
@@ -25,10 +27,9 @@ namespace BasicGames.ViewModels.GamersCommands
 
         public void Execute(object parameter)
         {
-            var nameBox = parameter as TextBox;
-            this.gamersContext.Gamers.Add(new Gamer(nameBox.Text));
+            var gamer = parameter as Gamer;
+            this.gamersContext.Gamers.Remove(gamer);
             this.gamersContext.SaveChanges();
-            nameBox.Text = "";
         }
     }
 }

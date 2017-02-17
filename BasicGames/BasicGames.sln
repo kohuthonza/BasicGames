@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicGames.Models", "BasicG
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicGames.ViewModels", "BasicGames.ViewModels\BasicGames.ViewModels.csproj", "{F29161C6-9B78-4F9A-AA18-A93DEFA34AC3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicGames.Services", "BasicGames.Services\BasicGames.Services.csproj", "{20751242-D4EC-4E5A-85E7-7D7E573CA77B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F29161C6-9B78-4F9A-AA18-A93DEFA34AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F29161C6-9B78-4F9A-AA18-A93DEFA34AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F29161C6-9B78-4F9A-AA18-A93DEFA34AC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20751242-D4EC-4E5A-85E7-7D7E573CA77B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20751242-D4EC-4E5A-85E7-7D7E573CA77B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20751242-D4EC-4E5A-85E7-7D7E573CA77B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20751242-D4EC-4E5A-85E7-7D7E573CA77B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

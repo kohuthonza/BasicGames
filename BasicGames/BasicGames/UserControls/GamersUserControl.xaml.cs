@@ -38,7 +38,6 @@ namespace BasicGames.UserControls
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
             AddGamerUserControl.Visibility = Visibility.Visible;
-            Console.WriteLine("juj");
         }
     }
 }

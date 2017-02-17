@@ -84,8 +84,7 @@ namespace BasicGames.ViewModels.SnakeGame
             }
         }
 
-        private System.Windows.Forms.Timer drawTimer;
-        private System.Windows.Forms.Timer updateTimer;
+        public System.Windows.Forms.Timer UpdateTimer { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -110,28 +109,12 @@ namespace BasicGames.ViewModels.SnakeGame
             this.Score = 0;            
         }
 
-        private void InitDrawTimer()
+        public void InitUpdateTimer()
         {
-            this.drawTimer = new System.Windows.Forms.Timer();
-            drawTimer.Tick += new EventHandler(Draw);
-            drawTimer.Interval = 200;
-            drawTimer.Start();
-        }
-
-        private void InitUpdateTimer()
-        {
-            this.updateTimer = new System.Windows.Forms.Timer();
-            updateTimer.Tick += new EventHandler(Update);
-            updateTimer.Interval = 200;
-            updateTimer.Start();
-        }
-
-        private void Draw(object sender, EventArgs e)
-        {
-            this.canvas.Children.Clear();
-            this.Food.Draw();
-            this.Snake.Draw();
-           
+            this.UpdateTimer = new System.Windows.Forms.Timer();
+            this.UpdateTimer.Tick += new EventHandler(Update);
+            this.UpdateTimer.Interval = 200;
+            this.UpdateTimer.Start();
         }
 
         private void Update(object sender, EventArgs e)
@@ -144,9 +127,13 @@ namespace BasicGames.ViewModels.SnakeGame
 
             this.Snake.Move();
 
+            this.canvas.Children.Clear();
+            this.Food.Draw();
+            this.Snake.Draw();
+
             if (IsSnakeIntersectingBorder() || IsHeadIntersectingSnake())
             {
-                StopTimers();
+                this.UpdateTimer.Stop();
                 this.IsStarted = false;
             }
         }
@@ -233,27 +220,14 @@ namespace BasicGames.ViewModels.SnakeGame
 
         public void Pause()
         {
-            StopTimers();
+            this.UpdateTimer.Stop();
             this.IsPaused = true;
         }
 
         public void Continue()
         {
-            InitTimers();
-            this.IsPaused = false;
-        }
-
-        public void InitTimers()
-        {
-            InitDrawTimer();
-            Thread.Sleep(190);
             InitUpdateTimer();
-        }
-
-        public void StopTimers()
-        {
-            this.drawTimer.Stop();
-            this.updateTimer.Stop();
+            this.IsPaused = false;
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

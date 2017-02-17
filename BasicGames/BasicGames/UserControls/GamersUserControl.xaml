@@ -14,10 +14,25 @@
                 <RowDefinition Height="5*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Pick gamer" FontSize="65" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Pick gamer" Grid.ColumnSpan="2" FontSize="65" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <ListBox Name="gamersList" Grid.Row="1" ItemsSource="{Binding Gamers}" DisplayMemberPath="Name" FontSize="20" Margin="50 25"/>
 
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Name="addButton" Grid.Row="1" Content="Add gamer" FontSize="25" Margin="25 25" Click="addButton_Click"/>
+                <Button Name="removeButton" Grid.Row="2" Command="{Binding RemoveGamerCommand}" CommandParameter="{Binding ElementName=gamersList, Path=SelectedItem}" Content="Remove gamer" FontSize="25" Margin="25 25" />
+            </Grid>
+            <Grid Grid.Row="2" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -25,8 +40,7 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Button Name="backButton" Grid.Column="0" Content="Back" FontSize="25" Margin="50 25" Click="backButton_Click"/>
-                <Button Name="addButton" Grid.Column="2" Content="Add gamer" FontSize="25" Margin="50 25" Click="addButton_Click"/>
+                <Button Name="backButton" Grid.Column="0" Command="{Binding SaveGamersCommand}" Content="Back" FontSize="25" Margin="50 25" Click="backButton_Click"/>
                 <Button Name="selectButton" Grid.Column="4" IsEnabled="{Binding ElementName=gamersList, Path=SelectedItems.Count}" Command="{Binding SelectGamerCommand}" CommandParameter="{Binding ElementName=gamersList, Path=SelectedItem}" Content="Select" FontSize="25" Margin="50 25" Click="selectButton_Click"/>
             </Grid>
         </Grid>
